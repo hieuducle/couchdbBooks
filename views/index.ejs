@@ -1,0 +1,70 @@
+
+
+<form method="post" action="/book/add">
+    <input type="text" name="name" placeholder="Add Name">
+    <input type="text" name="author" placeholder="Add Author">
+    <input type="text" name="price" placeholder="Add Price">
+    <input type="text" name="genre" placeholder="Add Genre">
+    <input type="submit" value = "Submit">
+</form>
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+<div class="table_main">
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Genre</th>
+            <th>...</th>
+        </thead>
+        <tbody>
+            <% book.forEach(function (book){ %>
+                <tr>
+                    <td><%= book.value.name %></td>
+                    <td><%= book.value.author %></td>
+                    <td><%= book.value.price %></td>
+                    <td><%= book.value.genre %></td>
+                    <td>
+                        <form method="post" action="/book/delete/<%= book.key %>">
+                            <input type="hidden" value="<%= book.value.rev %>" name="rev">
+                            <input type="submit" value="X">
+                        </form>
+                    </td>
+
+                    <td>
+                        <form method="post" action="/book/update/<%= book.key %>">
+                          <input type="hidden" value="<%= book.value.rev %>" name="rev">
+                          <input type="text" name="name" value="<%= book.value.name %>">
+                          <input type="text" name="author" value="<%= book.value.author %>">
+                          <input type="text" name="price" value="<%= book.value.price %>">
+                          <input type="text" name="genre" value="<%= book.value.genre %>">
+                          <input type="submit" value="Update">
+                        </form>
+                      </td>
+                </tr>
+            <% }) ;    %>
+    
+          
+    
+        </tbody>
+    </table>
+</div>
