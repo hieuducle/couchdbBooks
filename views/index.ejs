@@ -1,40 +1,71 @@
-
-
-<form method="post" action="/book/add">
-    <input type="text" name="name" placeholder="Add Name">
-    <input type="text" name="author" placeholder="Add Author">
-    <input type="text" name="price" placeholder="Add Price">
-    <input type="text" name="genre" placeholder="Add Genre">
-    <input type="submit" value = "Submit">
-</form>
-
-
-<style>
+<!-- <style>
+    
     table {
-        border-collapse: collapse;
-        width: 50%;
+        margin: auto;
     }
+    /* Thiết kế cho phần đầu bảng */
+.table thead th {
+  background-color: #343a40; /* màu nền */
+  color: #fff; /* màu chữ */
+  font-weight: bold; /* độ đậm của font chữ */
+  padding: 10px; /* khoảng cách giữa các ô */
+  text-align: left; /* canh lề */
+  border-bottom: 2px solid #fff; /* đường viền dưới */
+}
 
-    th, td {
-        text-align: left;
-        padding: 8px;
-        border-bottom: 1px solid #ddd;
-    }
+/* Thiết kế cho phần thân bảng */
+.table tbody td {
+  background-color: #f8f9fa; /* màu nền */
+  color: #343a40; /* màu chữ */
+  padding: 10px; /* khoảng cách giữa các ô */
+  text-align: left; /* canh lề */
+  border-bottom: 1px solid #dee2e6; /* đường viền dưới */
+}
 
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-</style>
+/* Thiết kế cho nút Back */
+.table tbody td a {
+  color: #007bff; /* màu chữ */
+  text-decoration: none; /* không gạch chân */
+}
+</style> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<div class="table_main">
-    <table>
-        <thead>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+            Menu
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/create">Add Book</a>
+              
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="m-4">
+
+    <table class="table">
+        <thead class="thead-dark">
             <th>Name</th>
             <th>Author</th>
             <th>Price</th>
             <th>Genre</th>
-            <th>...</th>
+            <th colspan="4" style="text-align: center;">Option</th>
+            
         </thead>
         <tbody>
             <% book.forEach(function (book){ %>
@@ -43,23 +74,22 @@
                     <td><%= book.value.author %></td>
                     <td><%= book.value.price %></td>
                     <td><%= book.value.genre %></td>
-                    <td>
-                        <form method="post" action="/book/delete/<%= book.key %>">
+                    <td style="text-align: center;">
+                        <form method="post" action="/del/<%= book.key %>">
                             <input type="hidden" value="<%= book.value.rev %>" name="rev">
-                            <input type="submit" value="X">
+                            
+                            <input type="submit" value="Delete" style="display: flex;justify-content: center;align-items: center;">
                         </form>
                     </td>
-
                     <td>
-                        <form method="post" action="/book/update/<%= book.key %>">
-                          <input type="hidden" value="<%= book.value.rev %>" name="rev">
-                          <input type="text" name="name" value="<%= book.value.name %>">
-                          <input type="text" name="author" value="<%= book.value.author %>">
-                          <input type="text" name="price" value="<%= book.value.price %>">
-                          <input type="text" name="genre" value="<%= book.value.genre %>">
-                          <input type="submit" value="Update">
-                        </form>
-                      </td>
+                        <a href="/books/details/<%= book.key %>">Details</a>
+                    </td>
+
+                    
+                    <td>
+                        <a href="/edit/<%= book.key %>">Edit</a>
+                    </td>
+                   
                 </tr>
             <% }) ;    %>
     
@@ -68,3 +98,7 @@
         </tbody>
     </table>
 </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

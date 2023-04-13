@@ -1,0 +1,51 @@
+
+<style>
+    table {
+        margin: auto;
+    }
+    /* Thiết kế cho phần đầu bảng */
+.table thead th {
+  background-color: #343a40; /* màu nền */
+  color: #fff; /* màu chữ */
+  font-weight: bold; /* độ đậm của font chữ */
+  padding: 10px; /* khoảng cách giữa các ô */
+  text-align: left; /* canh lề */
+  border-bottom: 2px solid #fff; /* đường viền dưới */
+}
+
+/* Thiết kế cho phần thân bảng */
+.table tbody td {
+  background-color: #f8f9fa; /* màu nền */
+  color: #343a40; /* màu chữ */
+  padding: 10px; /* khoảng cách giữa các ô */
+  text-align: left; /* canh lề */
+  border-bottom: 1px solid #dee2e6; /* đường viền dưới */
+}
+
+/* Thiết kế cho nút Back */
+.table tbody td a {
+  color: #007bff; /* màu chữ */
+  text-decoration: none; /* không gạch chân */
+}
+
+</style>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        
+        <th scope="col">Name</th>
+        <th scope="col">Author</th>
+        <th scope="col">Price</th>
+        <th scope="col">Genre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+            <td><%= book.name %></td>
+            <td><%= book.author %></td>
+            <td><%= book.price %></td>
+            <td><%= book.genre %></td>
+            <td><a href="/">Back</a></td>
+      </tr>
+    </tbody>
+  </table>
